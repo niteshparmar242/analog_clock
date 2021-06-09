@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clock</title>
+	<!-- <link rel="stylesheet" href="style.css"> -->
+	<style>
+		*{
+	
+	box-sizing: border-box;
+}
+
+body{
+	padding: 0;
+	margin: 0;
+	background-color:#e8e8e8;
+}
+.container-flex{
+	background-color: #49945c;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.clock{
+	width: 100%;
+	height: 300px;
+	max-width: 300px;
+	background-color: gray;
+	/*border:5px solid red;*/
+	border-radius: 50%;
+	background: url('c.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	box-shadow: 1px 1px 15px 8px rgb(76 132 158 / 38%), -1px -1px 15px 8px rgb(0 0 0 / 34%);
+}
+.hours,
+.minutes,
+.seconds{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 5px;
+	width: 30%;
+	background-color: #3aaf14;
+	border-radius: 50%;
+	transform-origin: left;
+	transform: rotate(-90deg);
+}
+.hours{
+	width:25%;
+	height: 8px;
+}
+	</style>
+</head>
+<body>
+<div class="container-flex">
+	<div class="clock">
+		<div class="hours"></div>
+		<div class="minutes"></div>
+		<div class="seconds"></div>
+	</div>
+</div>
+<!-- <script src="app.js"></script> -->
+<script>
+	const hrsHand = document.querySelector('.hours');
+const minHand = document.querySelector('.minutes');
+const secHand = document.querySelector('.seconds');
+
+const date = new Date;
+console.log(date.getHours());
+
+setInterval(()=>{
+	const date = new Date;
+// console.log(date.getHours());
+const secRotation = date.getSeconds()/60 * 360 - 90;
+// console.log(secRotation);
+const minRotation = date.getMinutes()/60 * 360 - 90;
+const hrsRotation = date.getHours()/12 * 360 - 90;
+
+secHand.style.transform = `rotate(${secRotation}deg)`;
+minHand.style.transform = `rotate(${minRotation}deg)`;
+hrsHand.style.transform = `rotate(${hrsRotation}deg)`;
+
+},1000)
+</script>
+</body>
+</html>
